@@ -1,0 +1,2 @@
+Cart -> Placed -> Payed -> Payed with kard -> Payed with kash -> Delivered by people -> Delivered by Flying-Dron -> 
+Delivered by Post Office -> Didn't Delivered(Problem) -> Delivered by themself -> Delivered. 

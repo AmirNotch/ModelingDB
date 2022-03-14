@@ -10,5 +10,9 @@ namespace Domain
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Order> Orders { get; set; }
+        /*public Guid PaymentMethodId { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public Guid AddressId { get; set; }
+        public Address Address { get; set; }*/
     }
 }

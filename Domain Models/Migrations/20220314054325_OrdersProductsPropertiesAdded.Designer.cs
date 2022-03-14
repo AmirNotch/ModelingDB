@@ -4,14 +4,16 @@ using Domain_Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domain_Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220314054325_OrdersProductsPropertiesAdded")]
+    partial class OrdersProductsPropertiesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,23 +70,13 @@ namespace Domain_Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PaymentMethodId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("PaymentMethodId");
 
                     b.ToTable("Client");
                 });
@@ -254,25 +246,6 @@ namespace Domain_Models.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Domain.Client", b =>
-                {
-                    b.HasOne("Domain.Address", "Address")
-                        .WithMany("Clients")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.PaymentMethod", "PaymentMethod")
-                        .WithMany("Clients")
-                        .HasForeignKey("PaymentMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-
-                    b.Navigation("PaymentMethod");
-                });
-
             modelBuilder.Entity("Domain.Order", b =>
                 {
                     b.HasOne("Domain.Address", "Address")
@@ -343,8 +316,6 @@ namespace Domain_Models.Migrations
 
             modelBuilder.Entity("Domain.Address", b =>
                 {
-                    b.Navigation("Clients");
-
                     b.Navigation("Orders");
                 });
 
@@ -367,8 +338,6 @@ namespace Domain_Models.Migrations
 
             modelBuilder.Entity("Domain.PaymentMethod", b =>
                 {
-                    b.Navigation("Clients");
-
                     b.Navigation("Orders");
                 });
 
